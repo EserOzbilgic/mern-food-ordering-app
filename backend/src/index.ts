@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
+import myUserRoute from "./routes/MyUserRoutes";
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => {
@@ -10,6 +11,7 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => {
 
 const app = express();
 app.use(express.json());
+app.use("/api/my/users",myUserRoute)
 
 // Configure CORS to allow only http://localhost:5173
 app.use(
